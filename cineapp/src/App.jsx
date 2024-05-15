@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom"
 import Header from "./Componentes/Header"
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <h1>GamaNet</h1>
+      <Outlet/>
     </>
   )
 }
