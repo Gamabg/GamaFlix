@@ -4,20 +4,14 @@ function Filmes() {
     console.log(data)
     return (
         <>
+        <img src="/public/macaao.jpg" className="w-full" alt="" />
         <div className='grid grid-cols-3'>
         {data.map(
                 (filme, index) => (
-                    <div className='card p-6 w-80 h-80' key={index}>
-                    <h1 key={filme.title}>{filme.title}</h1>
+                    <div className='card p-6 flex-col' key={index}>
                     <img src={filme.image}/>
-                    <div className="tags">
-                        {
-                        filme.tags.map( tag => (
-                            <span className="bg-blue-800 text-white p-1 m-1" key={tag}>{tag}</span>
-
-                        ))
-                        }   
-                    </div>
+                    <h1 key={filme.title}>{filme.title}</h1>
+                    
                     <div className="texto">
                         {
                             filme.text.map(texto => (
