@@ -7,7 +7,7 @@ function Filmes() {
         <div className='grid grid-cols-3'>
         {data.map(
                 (filme, index) => (
-                    <div className='card p-5' key={index}>
+                    <div className='card p-6 w-80 h-80' key={index}>
                     <h1 key={filme.title}>{filme.title}</h1>
                     <img src={filme.image}/>
                     <div className="tags">
