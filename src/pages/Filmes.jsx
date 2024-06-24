@@ -1,61 +1,86 @@
-import React from 'react';
-import Header from '../componentes/Header2/Header2';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+const API_KEY = "7c572a9f5b3ba776080330d23bb76e1e";
 
 const filmeData = {
-  "Ação": [
+  Ação: [
     {
       title: "Godzilla vs KONG",
       date: "20 April",
       rating: "12+",
-      image: "./public/king.jpg" 
+      image: "./public/king.jpg",
     },
-    {
-      title: "Godzilla vs KONG",
-      date: "20 April",
-      rating: "18+",
-      image: "./public/king.jpg" 
-    },
-    {
-      title: "Godzilla vs KONG",
-      date: "20 April",
-      rating: "18+",
-      image: "./public/king.jpg" 
-    },
-    {
-      title: "Godzilla vs KONG",
-      date: "20 April",
-      rating: "16+",
-      image: "./public/king.jpg" 
-    }
   ],
-  "História": [
+  História: [
     {
       title: "Planeta dos Macacos",
       date: "21 April",
       rating: "12+",
-      image: "./public/macaco.jpg" 
+      image: "./public/macaco.jpg",
     },
-    {
-      title: "Planeta dos Macacos",
-      date: "21 April",
-      rating: "12+",
-      image: "./public/macaco.jpg" 
-    },
-    {
-      title: "Planeta dos Macacos",
-      date: "22 April",
-      rating: "12+",
-      image: "./public/macaco.jpg" 
-    },
-    {
-      title: "Planeta dos Macacos",
-      date: "22 April",
-      rating: "12+",
-      image: "./public/macaco.jpg" 
-    }
-  ]
+  ],
 };
 
+function Filmes() {
+  const [filmes, setFilmes] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+        );
+        if (!response.ok) {
+          throw new Error(`API request failed with status ${response.status}`);
+        }
+        const data = await response.json();
+        setFilmes(data.results);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  return (
+    <>
+      <div className="bg-white">
+        <h1 className="text-3xl p-20 pt-10 pb-10 font-bold text-gama1">
+          Filmes
+        </h1>
+        <div className="listaFilmes flex justify-between gap-16 flex-wrap p-20 pt-0">
+          {filmes.map((filme) => (
+            <div
+              key={filme.id}
+              className="card-filme text-white rounded-2xl h-[300px] w-[150px] flex flex-col justify-around"
+            >
+              <img
+                className="w-40 rounded-2xl"
+                src={`https://image.tmdb.org/t/p/w92/${filme.poster_path}`}
+                alt={filme.title}
+              />
+              <h1 className="text-wrap text-center pb-1 text-gama1">
+                {filme.title}
+              </h1>
+              <Link
+                to={`${filme.id}`}
+                className="flex justify-center bg-gama2 text-white rounded p-5 pt-1 pb-1"
+              >
+                Saiba Mais
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Filmes;
+
+/*
 const MovieSection = () => {
   return (
     <div className="container mx-auto py-8">
@@ -81,3 +106,4 @@ const MovieSection = () => {
 };
 
 export default MovieSection;
+*/

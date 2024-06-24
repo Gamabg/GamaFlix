@@ -25,7 +25,7 @@ function Filmes() {
         <img src="/public/macaao.jpg" className="w-full" alt="" />
         <div className="container mx-auto py-8">
       {filme.map((filme, index) => (
-        <div key={index} className="flex bg-gama1 rounded-lg shadow-md overflow-hidden mb-8">
+        <div key={index} className="flex bg-gama3 rounded-lg shadow-md overflow-hidden mb-8">
           <img src={filme.image} alt={filme.title} className="w-1/3 h-auto object-cover" />
           <div className="p-4 w-2/3 bg-terciary-gama3">
             <h3 className="text-2xl font-bold mb-2">{filme.title}</h3>
