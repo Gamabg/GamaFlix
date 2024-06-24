@@ -3,10 +3,10 @@ function Navbar(){
     return(
         <nav>
             <ul className="flex gap-3">
-                <li><Link to ="/">Home</Link></li>
-                <li><Link to ="Filmes">Filmes</Link></li>
-                <li><Link to ="Sobre">Sobre</Link></li>
-                <li><Link to ="Contato">Contato</Link></li>
+                <a href="/" className="hover:underline">Home</a>
+                <a href="Filmes" className="hover:underline">Filmes</a>
+                <a href="Sobre" className="hover:underline">Sobre</a>
+                <a href="Contato" className="hover:underline">Contato</a>
             </ul>
         </nav>
     );
